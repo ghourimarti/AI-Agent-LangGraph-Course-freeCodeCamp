@@ -1,0 +1,4 @@
+token.env
+agent/
+**/.env
+**/.env.*
