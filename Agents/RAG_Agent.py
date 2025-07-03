@@ -13,6 +13,32 @@ from langchain_core.tools import tool
 
 load_dotenv()
 
+# <----------- Load Environment Variables ----------->
+
+import os
+from dotenv import load_dotenv
+load_dotenv('token.env')  # path to your token.env file
+
+langchain_api_key = os.getenv("langchain_api_key")
+openai_api_keys = os.getenv("openai_api_key")
+tavily_api_key = os.getenv("tavily_api_key")
+groq_api_key = os.getenv("groq_api_key")
+
+print("Langchain Key:      ",langchain_api_key[:5] + "..." if langchain_api_key else "key not found")
+print("openai_api_key Key: ",openai_api_keys[:5] + "..." if openai_api_keys else "key not found")
+print("tavily_api_key Key: ",tavily_api_key[:5] + "..." if tavily_api_key else "key not found")
+print("groq_api_key Key:   ",groq_api_key[:5] + "..." if groq_api_key else "key not found")
+
+
+# os.environ["GROQ_API_KEY"] = groq_api_key
+os.environ["LANGSMITH_API_KEY"] = langchain_api_key
+os.environ["LANGSMITH_TRACING"] = "true"
+os.environ["LANGSMITH_PROJECT"] = "Agent Debugging"
+# <----------- Load Environment Variables ----------->
+
+
+
+
 llm = ChatOpenAI(
     model="gpt-4o", temperature = 0) # I want to minimize hallucination - temperature = 0 makes the model output more deterministic 
 

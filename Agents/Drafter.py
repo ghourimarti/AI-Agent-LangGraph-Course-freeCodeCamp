@@ -7,7 +7,27 @@ from langgraph.graph.message import add_messages
 from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 
-load_dotenv()
+# <------------------------------------------------------------->
+
+import os
+from dotenv import load_dotenv
+load_dotenv('token.env')  # path to your token.env file
+
+langchain_api_key = os.getenv("langchain_api_key")
+openai_api_keys = os.getenv("openai_api_key")
+tavily_api_key = os.getenv("tavily_api_key")
+groq_api_key = os.getenv("groq_api_key")
+print("Langchain Key:      ",langchain_api_key[:5] + "..." if langchain_api_key else "key not found")
+print("openai_api_key Key: ",openai_api_keys[:5] + "..." if openai_api_keys else "key not found")
+print("tavily_api_key Key: ",tavily_api_key[:5] + "..." if tavily_api_key else "key not found")
+print("groq_api_key Key:   ",groq_api_key[:5] + "..." if groq_api_key else "key not found")
+
+
+os.environ['LANGCHAIN_TRACING_V2'] = 'true'
+os.environ['LANGCHAIN_ENDPOINT'] = 'https://api.smith.langchain.com'
+os.environ['LANGCHAIN_API_KEY'] = langchain_api_key
+
+# <------------------------------------------------------------->
 
 # This is the global variable to store document content
 document_content = ""
